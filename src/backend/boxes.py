@@ -40,6 +40,7 @@ def box_buat(nama_box, tanggal_dibuat_str, label=""):
     data = {
         "tanggal_pembuatan": tanggal_dibuat_str,
         "label": label,
+        "interval_factor": 1,
         "kartu": []
     }
     
@@ -47,20 +48,21 @@ def box_buat(nama_box, tanggal_dibuat_str, label=""):
     json.dump(data, file, ensure_ascii=False, indent=config.JSON_INDENT)
     file.close()
 
-def box_simpan(nama_box, daftar_kartu):
+    return 1
+
+def box_simpan(nama_box, box_data):
     # Mengambil konten box yang ada dalam suatu box
     nama_aman = box_nama(nama_box)
     path_box = box_path(nama_box)
     
     if nama_aman == "" or not os.path.exists(path_box):
         return 0
-    
-    data = box_ambil(nama_box)
-    data["kartu"] = daftar_kartu
 
     file = open(path_box, "w", encoding="utf-8")
-    json.dump(data, file, ensure_ascii=False, indent=config.JSON_INDENT)
+    json.dump(box_data, file, ensure_ascii=False, indent=config.JSON_INDENT)
     file.close()
+
+    return 1
 
 def box_hapus(nama_box):
     # Menghapus box (obviously, duhh)
@@ -104,6 +106,7 @@ def box_ambil_stat_kartu(nama_box):
     # Yang mau kita ambil: nilai q terakhir dan due date
     jumlah_q = [0,0,0,0]
     jumlah_due = {} # dibolehin sih ya
+    jumlah_yet_r = 0
     
     index_by_q = [0,0,0,0]
     kartu_by_q = {
@@ -119,7 +122,10 @@ def box_ambil_stat_kartu(nama_box):
         due_kartu = kartu[config.IDX_NEXT]
 
         # Tambah jumlah kartu by grade
-        jumlah_q[q_kartu] += 1
+        if kartu[config.IDX_I_LAST] != 0:
+            jumlah_q[q_kartu] += 1
+        else:
+            jumlah_yet_r += 1
 
         # Tambah jumlah kartu by due date
         if due_kartu in jumlah_due:
@@ -141,7 +147,8 @@ def box_ambil_stat_kartu(nama_box):
         "mastery_rate": f"{mastery_rate:.1f}",
         "kartu_by_q": kartu_by_q,
         "jumlah_kartu_by_q": jumlah_q,
-        "jumlah_kartu_by_due": jumlah_due
+        "jumlah_kartu_by_due": jumlah_due,
+        "jumlah_kartu_belum_direview": jumlah_yet_r
     }
 
 def boxes_daftar():
