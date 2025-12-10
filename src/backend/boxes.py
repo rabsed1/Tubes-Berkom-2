@@ -28,22 +28,36 @@ def box_path(nama_box):
     # Asumsinya itu nama box sudah aman
     return os.path.join(BOXES_PATH, f"{nama_box}.json")
 
-def box_buat(nama_box, tanggal_dibuat_str, daftar_kartu=[], label=""):
+def box_buat(nama_box, tanggal_dibuat_str, label=""):
     # Membuat box baru
     nama_aman = box_nama(nama_box)
     path_box = box_path(nama_box)
     
-    if nama_aman == "":
-        return 0
-    if type(daftar_kartu) != list:
+    # nama nggak valid ato box ternyata udah ada
+    if nama_aman == "" or os.path.exists(path_box):
         return 0
 
     data = {
         "tanggal_pembuatan": tanggal_dibuat_str,
         "label": label,
-        "kartu": daftar_kartu
+        "kartu": []
     }
     
+    file = open(path_box, "w", encoding="utf-8")
+    json.dump(data, file, ensure_ascii=False, indent=config.JSON_INDENT)
+    file.close()
+
+def box_simpan(nama_box, daftar_kartu):
+    # Mengambil konten box yang ada dalam suatu box
+    nama_aman = box_nama(nama_box)
+    path_box = box_path(nama_box)
+    
+    if nama_aman == "" or not os.path.exists(path_box):
+        return 0
+    
+    data = box_ambil(nama_box)
+    data["kartu"] = daftar_kartu
+
     file = open(path_box, "w", encoding="utf-8")
     json.dump(data, file, ensure_ascii=False, indent=config.JSON_INDENT)
     file.close()
@@ -73,7 +87,7 @@ def box_ambil(nama_box):
 
     return data
 
-def box_ambil_stat(nama_box):
+def box_ambil_stat_kartu(nama_box):
     # Mengambil statistik suatu box
     nama_aman = box_nama(nama_box)
     path_box = box_path(nama_box)

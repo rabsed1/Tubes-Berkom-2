@@ -49,4 +49,3 @@ def jadwal_update(kartu, q, tanggal_today_str):
     kartu[config.IDX_Q_LAST] = q
 
     return kartu
-
