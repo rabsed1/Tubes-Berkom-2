@@ -1,6 +1,9 @@
-from kivy.uix.widget import Widget
+from kivy.app import App
+
+from kivy.uix.scrollview import ScrollView
 from kivy.uix.relativelayout import RelativeLayout
 from kivy.uix.gridlayout import GridLayout
+from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.label import Label
 from kivy.uix.button import Button
 from kivy.uix.textinput import TextInput
@@ -17,72 +20,80 @@ from deck import Deck
 class DeckList(RelativeLayout):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
+
         self.size=Globals.windowSize
-        layout = GridLayout(cols=1, spacing=(0, 50), size_hint=(1, None), size=(0, self.size[1]))
-        with layout.canvas:
-            layout.rect = Rectangle(source='res/texture/bg1.png', size=layout.size)
-            layout.bind(size=self.updateDeckBackground)
-
-        self.decks = RelativeLayout(size_hint=(1,None))
-        self.decks.layout = GridLayout(cols=1, size_hint=(.7, None), spacing=(0,40), pos_hint={'center_x':.5,'top':1})
-        for i in range(1):
-            deck = Deck()
-            deck.bind(on_press=self.showDeckTab)
-            self.decks.layout.add_widget(deck)
-        self.decks.add_widget(self.decks.layout)
-        self.decks.layout.bind(size=self.updateDeckSize)
         
-        lblDeck = Label(text='Decks', font_size=48, color=(0,0,0,1), size_hint=(1, None), size=(0,75), pos_hint={'center_x':.5})
-        btnAddDeck = Button(text='+   Add Deck', font_size=22, color=(0,0,0,1), size_hint=(.4, None), size=(0,50), pos_hint={'center_x':.5}, background_color=(0,0,0,0))
-        btnAddDeck.bind(on_press=self.showAddDeckMenu)
-        layout.add_widget(lblDeck)
-        layout.add_widget(btnAddDeck)
-        layout.add_widget(self.decks)
-        self.layout = layout
-        self.add_widget(self.layout)
-
         self.addDeckMenu = None
         self.deckTab = None
         self.blurLayer = None
 
-    def transitionToCardList(instance, value):
-        Globals.currentState = AppState.CARD_LIST
-    
-    def updateDeckSize(self, instance, value):
-        self.decks.size[1] = instance.minimum_height
-        print(self.decks.size)
+        container = BoxLayout(orientation='vertical', spacing=30, padding=(0,20,0,0))
 
-    def updateDeckBackground(self, instance, value):
-        self.layout.rect.size = instance.size
+        with self.canvas:
+            Rectangle(source='res/textures/bg1.png', size=self.size)
+
+        title = Label(text='Decks', font_name='Jersey10', font_size=55, color=(0,0,0,1), size_hint=(1, .2), pos_hint={'center_x':.5})
+        container.add_widget(title)
+        container.title = title
+
+        button = Button(text='+   Add Deck', font_name='Jersey10', font_size=28, color=(0,0,0,1), size_hint=(.4, .1), pos_hint={'center_x':.5}, background_color=(0,0,0,0))
+        button.bind(on_press=self.showAddDeckMenu)
+        container.add_widget(button)
+        container.button = button
+
+        deckList = ScrollView()
+        dlContainer = BoxLayout(orientation='vertical', size_hint=(1,None), padding=(100,0), spacing=40, pos_hint={'center_x':.5,'top':1})
+        dlContainer.arr = []
+        for i in range(1):
+            deck = Deck()
+            deck.bind(on_press=self.showDeckTab)
+            dlContainer.add_widget(deck)
+            dlContainer.arr.append(deck)
+        dlContainer.bind(minimum_height=self.updateDeckListSize)
+
+        deckList.add_widget(dlContainer)
+        deckList.container = dlContainer
+        
+        container.add_widget(deckList)
+        container.deckList = deckList
+
+        self.add_widget(container)
+        self.container = container
+    
+    def updateDeckListSize(self, instance, value):
+        self.container.deckList.container.size[1] = instance.minimum_height
     
     def showAddDeckMenu(instance, value):
         if not instance.addDeckMenu:
-            layout = RelativeLayout(size_hint=(.75,.75), pos_hint={'center_x':.5, 'center_y':.5})
-            with layout.canvas:
+            addDeckMenu = RelativeLayout(size_hint=(.75,.75), pos_hint={'center_x':.5, 'center_y':.5})
+            with addDeckMenu.canvas:
                 Color(1,1,1,1)
-                layout.rect1 = RoundedRectangle(size=layout.size, radius=(30,30,30,30))
-                layout.rect2 = RoundedRectangle(source='res/texture/bg2.png', pos=(0, layout.size[1]), size=(layout.size[0], 0.4*layout.size[1]), radius=(30,30,30,30))
-                layout.bind(size=instance.updateAddDeckMenuBackground)
-                layout.bind(pos=instance.updateAddDeckMenuBackground)
+                addDeckMenu.bg = RoundedRectangle(size=addDeckMenu.size, radius=(30,30,30,30))
+                addDeckMenu.bgImage = RoundedRectangle(source='res/textures/bg2.png', pos=(0, addDeckMenu.size[1]), size=(addDeckMenu.size[0], 0.4*addDeckMenu.size[1]), radius=(30,30,30,30))
+                addDeckMenu.bind(size=instance.updateAddDeckMenuSizePos)
+                addDeckMenu.bind(pos=instance.updateAddDeckMenuSizePos)
 
-            layout.tiTitle = TextInput(hint_text='Add deck name...', font_size=20, size_hint=(.8, .2), pos_hint={'center_x':.5, 'y':.5}, multiline=False, background_color=(0,0,0,0), padding=(30,30,30,30))
-            with layout.canvas:
+            input = TextInput(hint_text='Add deck name...', font_name='Jersey10', font_size=25, size_hint=(.8, .2), pos_hint={'center_x':.5, 'y':.5}, multiline=False, background_color=(0,0,0,0), padding=(30,30,30,30))
+            with addDeckMenu.canvas:
                 Color(.8,.8,.8,1)
-                layout.rect3 = RoundedRectangle(background_color=(0,0,1,1), size=layout.tiTitle.size, pos=layout.tiTitle.pos, radius=(30,30,30,30))
-                layout.tiTitle.bind(size=instance.updateTiTitleBackground)
-                layout.tiTitle.bind(pos=instance.updateTiTitleBackground)
+                input.bg = RoundedRectangle(background_color=(0,0,1,1), size=input.size, pos=input.pos, radius=(30,30,30,30))
+                input.bind(size=instance.updateAddDeckMenuInputSizePos)
+                input.bind(pos=instance.updateAddDeckMenuInputSizePos)
+            addDeckMenu.add_widget(input)
+            addDeckMenu.input = input
 
-            instance.btnOk = Button(text='Ok', font_size=30, size_hint=(.5, .1), pos_hint={'center_x':.25, 'y':0}, color=(0,0,0,1), background_color=(0,0,0,0))
-            instance.btnCancel = Button(text='Cancel', font_size=30, size_hint=(.5,.1), pos_hint={'center_x':.75, 'y':0}, color=(0,0,0,1), background_color=(0,0,0,0))
-            instance.btnCancel.bind(on_press=instance.closeAddDeckMenu)
-            instance.btnOk.bind(on_press=instance.addDeck)
+            btnOk = Button(text='Ok', font_name='Jersey10', font_size=32, size_hint=(.5, .1), pos_hint={'center_x':.25, 'y':0}, color=(0,0,0,1), background_color=(0,0,0,0))
+            btnOk.bind(on_press=instance.addDeck)
+            addDeckMenu.add_widget(btnOk)
+            addDeckMenu.btnOk = btnOk
 
-            layout.add_widget(layout.tiTitle)
-            layout.add_widget(instance.btnCancel)
-            layout.add_widget(instance.btnOk)
+            btnCancel = Button(text='Cancel', font_name='Jersey10', font_size=32, size_hint=(.5,.1), pos_hint={'center_x':.75, 'y':0}, color=(0,0,0,1), background_color=(0,0,0,0))
+            btnCancel.bind(on_press=instance.closeAddDeckMenu)
+            addDeckMenu.add_widget(btnCancel)
+            addDeckMenu.btnCancel = btnCancel
 
-            instance.addDeckMenu = layout
-            instance.add_widget(instance.addDeckMenu)
+            instance.add_widget(addDeckMenu)
+            instance.addDeckMenu = addDeckMenu
     
     def closeAddDeckMenu(instance, value):
         instance.remove_widget(instance.addDeckMenu)
@@ -91,16 +102,16 @@ class DeckList(RelativeLayout):
     def showDeckTab(instance, value):
         if not instance.deckTab:
             instance.addBlurLayer()
-            layout = GridLayout(size_hint=(1, .22), cols=1, rows=4)
+            layout = BoxLayout(orientation='vertical', size_hint=(1, .22))
             with layout.canvas:
                 Color(.07,.07,.07,.95)
-                layout.rect1=RoundedRectangle(size=layout.size, radius=(30,30,0,0))
-                layout.bind(size=instance.updateDeckTabBackground)
-                layout.bind(pos=instance.updateDeckTabBackground)
+                layout.bg=RoundedRectangle(size=layout.size, radius=(30,30,0,0))
+                layout.bind(size=instance.updateDeckTabSizePos)
+                layout.bind(pos=instance.updateDeckTabSizePos)
             layout.add_widget(Button(text='------', size_hint=(1,.5), font_size=30, halign='center', valign='center', background_color=(0,0,0,0), on_press=instance.removeBlurLayer))
-            layout.add_widget(Button(text='Open Deck', font_size=30, halign='center', valign='center', background_color=(0,0,0,0), on_press=instance.transitionToCardList))
-            layout.add_widget(Button(text='Rename', font_size=30, halign='center', valign='center', background_color=(0,0,0,0)))
-            layout.add_widget(Button(text='Delete', font_size=30, halign='center', valign='center', background_color=(0,0,0,0)))
+            layout.add_widget(Button(text='Open Deck', font_name='Jersey10', font_size=27, halign='center', valign='center', background_color=(0,0,0,0), on_press=instance.toCardList))
+            layout.add_widget(Button(text='Rename', font_name='Jersey10', font_size=27, halign='center', valign='center', background_color=(0,0,0,0)))
+            layout.add_widget(Button(text='Delete', font_name='Jersey10', font_size=27, halign='center', valign='center', background_color=(0,0,0,0)))
             instance.add_widget(layout)
             instance.deckTab = layout
 
@@ -120,21 +131,25 @@ class DeckList(RelativeLayout):
             instance.blurLayer = None
             instance.deckTab = None
 
+    def toCardList(instance, value):
+        App.get_running_app().sm.current = 'CardList'
+        pass
+
     def addDeck(instance, value):
         deck = Deck()
         deck.bind(on_press=instance.showDeckTab)
-        instance.decks.layout.add_widget(deck)
+        instance.container.deckList.container.add_widget(deck)
         instance.closeAddDeckMenu(0)
-    
-    def updateAddDeckMenuBackground(self, instance, value):
-        self.addDeckMenu.rect1.size = instance.size
-        self.addDeckMenu.rect2.size = (instance.size[0], 0.4*instance.size[1])
-        self.addDeckMenu.rect2.pos = (0, 0.6*instance.size[1])
 
-    def updateTiTitleBackground(self, instance, value):
-        self.addDeckMenu.rect3.size = instance.size
-        self.addDeckMenu.rect3.pos = instance.pos
+    def updateAddDeckMenuSizePos(self, instance, value):
+        instance.bg.size = instance.size
+        instance.bgImage.size = (instance.size[0],.4*instance.size[1])
+        instance.bgImage.pos = (0, instance.size[1]-instance.bgImage.size[1])
 
-    def updateDeckTabBackground(self, instance, value):
-        self.deckTab.rect1.size = instance.size
-        self.deckTab.rect1.pos = instance.pos
+    def updateAddDeckMenuInputSizePos(self, instance, value):
+        instance.bg.size = instance.size
+        instance.bg.pos = instance.pos
+
+    def updateDeckTabSizePos(self, instance, value):
+        instance.bg.size = instance.size
+        instance.bg.pos = instance.pos
