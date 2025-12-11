@@ -1,6 +1,7 @@
 import os
 import json
 import config
+from cards import kartu_valid
 
 # path-nya absolute, tapi relatif terhadap path berkas boxes.py
 path = os.path.abspath(__file__)
@@ -58,6 +59,12 @@ def box_simpan(nama_box, box_data):
     if nama_aman == "" or not os.path.exists(path_box):
         return 0
 
+    # cek apakah kartu valid atau tidak
+    daftar_kartu = box_data["kartu"]
+    for kartu in daftar_kartu:
+        if not kartu_valid(kartu):
+            return 0
+
     file = open(path_box, "w", encoding="utf-8")
     json.dump(box_data, file, ensure_ascii=False, indent=config.JSON_INDENT)
     file.close()
@@ -89,7 +96,7 @@ def box_ambil(nama_box):
 
     return data
 
-def box_ambil_stat_kartu(nama_box):
+def box_ambil_stat(nama_box):
     # Mengambil statistik suatu box
     nama_aman = box_nama(nama_box)
     path_box = box_path(nama_box)
@@ -102,36 +109,48 @@ def box_ambil_stat_kartu(nama_box):
     jumlah_kartu = len(data_kartu)
     file.close()
 
+    if jumlah_kartu == 0:
+        return 0
+
     # Proses pengambilan stat yang agak ribet dimulai di sini
     # Yang mau kita ambil: nilai q terakhir dan due date
     jumlah_q = [0,0,0,0]
-    jumlah_due = {} # dibolehin sih ya
+    jumlah_q_p = [0,0,0,0] # p: primitive
     jumlah_yet_r = 0
-    
-    index_by_q = [0,0,0,0]
-    kartu_by_q = {
-        0: [None for i in range(jumlah_kartu)],
-        1: [None for i in range(jumlah_kartu)],
-        2: [None for i in range(jumlah_kartu)],
-        3: [None for i in range(jumlah_kartu)]
-    }
-    
-    # gak pakai index, keknya boleh deh
+
     for kartu in data_kartu:
         q_kartu = kartu[config.IDX_Q_LAST]
-        due_kartu = kartu[config.IDX_NEXT]
 
         # Tambah jumlah kartu by grade
-        if kartu[config.IDX_I_LAST] != 0:
+        if kartu[config.IDX_R] != 0:
             jumlah_q[q_kartu] += 1
         else:
             jumlah_yet_r += 1
 
-        # Tambah jumlah kartu by due date
-        if due_kartu in jumlah_due:
-            jumlah_due[due_kartu][q_kartu] += 1
-        else:
-            jumlah_due[due_kartu] = [0,0,0,0]
+        jumlah_q_p[q_kartu] += 1
+    
+    # kategorisasi kartu
+    jumlah_kartu_by_due = {}
+    kartu_by_q = {
+        0: [None for i in range(jumlah_q_p[0])],
+        1: [None for i in range(jumlah_q_p[1])],
+        2: [None for i in range(jumlah_q_p[2])],
+        3: [None for i in range(jumlah_q_p[3])]
+    }
+
+    # helpers
+    index_by_q = [0,0,0,0]
+    
+    # kali ini pakai index
+    for i in range(jumlah_kartu):
+        # Tambah indeks kartu by berdasarkan due date
+        q_kartu = data_kartu[i][config.IDX_Q_LAST]
+        due_kartu = data_kartu[i][config.IDX_NEXT]
+
+        if not hasattr(kartu_by_q, due_kartu):
+            jumlah_kartu_by_due[due_kartu] = [0,0,0,0]
+        
+        jumlah_kartu_by_due[due_kartu][q_kartu] += 1
         
         # Masukin kartu ke daftar kartu based on grade
         idx = index_by_q[q_kartu]
@@ -139,15 +158,17 @@ def box_ambil_stat_kartu(nama_box):
         index_by_q [q_kartu] += 1
 
     # Tambah stats mastery, yakni 
-    # jumlah kartu dengan q>=2 dibagi jumlah total kartu
-    mastery_rate = (jumlah_q[2]+jumlah_q[3])
-    mastery_rate /= jumlah_q[0]+jumlah_q[1]+jumlah_q[2]+jumlah_q[3]
-
+    # jumlah kartu dengan q=2 dibagi jumlah total kartu
+    mastery_rate = 0
+    if jumlah_q[2]+jumlah_q[3] != 0:
+        mastery_rate = (jumlah_q[2]+jumlah_q[3])
+        mastery_rate /= jumlah_q[0]+jumlah_q[1]+jumlah_q[2]+jumlah_q[3]
+    
     return {
         "mastery_rate": f"{mastery_rate:.1f}",
         "kartu_by_q": kartu_by_q,
         "jumlah_kartu_by_q": jumlah_q,
-        "jumlah_kartu_by_due": jumlah_due,
+        "jumlah_kartu_by_due": jumlah_kartu_by_due,
         "jumlah_kartu_belum_direview": jumlah_yet_r
     }
 

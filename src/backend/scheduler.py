@@ -1,12 +1,12 @@
-from backend.date import tanggal_tambah
+from date import tanggal_tambah
 import config
 
 def max_imp(a, b):
     # fungsi max() keknya juga nggak boleh bawaan
     if a <= b:
-        return a
+        return b
     
-    return b
+    return a
 
 def clamp_imp(angka, min, maks):
     # FUNGSI CLAMP() KAGAK BOLEH!!!! sedih bet
@@ -54,7 +54,7 @@ def jadwal_update(kartu, q, tanggal_str, IFg=1):
             Ip = round(Ip * IFg)
             Ip = round(Ip * special_IF(q))
             Ip = max(kartu[config.IDX_I_LAST]+1, Ip)
-            Ip = clamp_imp(Ip, 0, config.SM_MAX_INTERVAL)
+            Ip = clamp_imp(Ip, 1, config.SM_MAX_INTERVAL)
         
         NRp += 1
     else:
@@ -62,16 +62,20 @@ def jadwal_update(kartu, q, tanggal_str, IFg=1):
         Ip = 0 # Alias ngulang
 
     # Update nilai EF. Harusnya sebelum klasifikasi grade q sih
+    # Pertumbuhan EF juga dibatesin pake fungsi clamp() itu
+    # Dan formulanya pake EF SM-2 yang ori, jadi q grade kita di map ke q grade yang ori
+    # Pake fungsi map_grade
     Qm = map_grade(q)
     EFp = EFp + (0.1-(5-Qm)*(.08+(5-Qm)*.02))
     EFp = clamp_imp(EFp, 1.3, config.SM_MAX_EF)
 
     # Update informasi
     kartu[config.IDX_LAST] = tanggal_str
-    kartu[config.IDX_NEXT] = tanggal_tambah(tanggal_str, Ip)
+    kartu[config.IDX_NEXT] = tanggal_tambah(kartu[config.IDX_LAST], Ip)
     kartu[config.IDX_EF] = EFp
     kartu[config.IDX_NR] = NRp
     kartu[config.IDX_Q_LAST] = q
     kartu[config.IDX_I_LAST] = Ip
+    kartu[config.IDX_R] = 1
 
     return kartu
