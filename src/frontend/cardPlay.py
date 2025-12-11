@@ -16,6 +16,12 @@ from kivy.graphics import BoxShadow
 from frontend.globals import Globals
 
 from backend.boxes import box_ambil
+from backend.boxes import box_simpan
+from backend.date import tanggal_parse
+from backend.date import tanggal_format
+from backend.scheduler import jadwal_update
+
+from datetime import date
 
 class CardPlay(BoxLayout):
     def __init__(self, **kwargs):
@@ -26,7 +32,19 @@ class CardPlay(BoxLayout):
         self.size = Globals.windowSize
 
         self.name = App.get_running_app().data['deckName']
-        self.card = box_ambil(self.name)['kartu'][0]
+        self.cards = box_ambil(self.name)['kartu']
+
+        self.playCards = []
+        self.stashCard = []
+        for card in self.cards:
+            if tanggal_parse(card[3]) == date.today():
+                self.playCards.append(card)
+            else:
+                self.stashCard.append(card)
+
+        self.currentIdx = -1
+        self.lastIdx = len(self.playCards)-1
+        self.rate = [0, 0, 0, 0]
 
         self.cardFlipped = False
 
@@ -35,15 +53,23 @@ class CardPlay(BoxLayout):
 
         header = BoxLayout(orientation='horizontal', size_hint=(1,.15))
         # header.add_widget(Button(text='<-', color=(0,0,0,1), font_name='Jersey10', font_size=34, halign='center', valign='center', size_hint=(.2, 1), background_color=(0,0,0,0)))
-        header.add_widget(Button(text=self.card[0][0], color=(0,0,0,1), font_name='Jersey10', font_size=35, halign='center', valign='center', background_color=(0,0,0,0)))
+        header.add_widget(Button(text=self.name, color=(0,0,0,1), font_name='Jersey10', font_size=35, halign='center', valign='center', background_color=(0,0,0,0)))
         header.text_size=header.size
         self.add_widget(header)
 
         score = BoxLayout(orientation='horizontal',size_hint=(.2, .05), pos_hint={'center_x':.5})
-        score.add_widget(Label(text='0', color=(0,0,1,1), font_name='Jersey10', font_size=30, halign='center', valign='center'))
-        score.add_widget(Label(text='0', color=(1,0,0,1), font_name='Jersey10', font_size=30, halign='center', valign='center'))
-        score.add_widget(Label(text='0', color=(0,1,0,1), font_name='Jersey10', font_size=30, halign='center', valign='center'))
+        score.arr = [
+            Label(text=f'{self.rate[0]}', color=(1,0,0,1), font_name='Jersey10', font_size=30, halign='center', valign='center'),
+            Label(text=f'{self.rate[0]}', color=(0,0,0,1), font_name='Jersey10', font_size=30, halign='center', valign='center'),
+            Label(text=f'{self.rate[0]}', color=(0,1,0,1), font_name='Jersey10', font_size=30, halign='center', valign='center'),
+            Label(text=f'{self.rate[0]}', color=(0,0,1,1), font_name='Jersey10', font_size=30, halign='center', valign='center')
+        ]
+        score.add_widget(score.arr[0])
+        score.add_widget(score.arr[1])
+        score.add_widget(score.arr[2])
+        score.add_widget(score.arr[3])
         self.add_widget(score)
+        self.score = score
 
         main = BoxLayout(orientation='vertical', size_hint=(.8, 1), pos_hint={'center_x':.5}, padding=(20,0,20,50), spacing=20)
 
@@ -59,7 +85,7 @@ class CardPlay(BoxLayout):
             card.bind(size=self.updateCardSizePos)
             card.bind(pos=self.updateCardSizePos)
         # card.image = Image(source='res/textures/img1.png', fit_mode='contain')
-        card.label = Label(text=self.card[0][0], color=(0,0,0,1), font_name='Inconsolata', font_size=28, halign='center', valign='center')
+        card.label = Label(text='', color=(0,0,0,1), font_name='Inconsolata', font_size=28, halign='center', valign='center')
         card.label.bind(size=self.updateCardLabelSizePos)
         # card.add_widget(card.image)
         card.add_widget(card.label)
@@ -83,17 +109,29 @@ class CardPlay(BoxLayout):
             rate.bg = RoundedRectangle(size=rate.size, radius=(30,30,30,30))
             rate.bind(size=self.updateRateSizePos)
             rate.bind(pos=self.updateRateSizePos)
-        rate.add_widget(Button(text='Again', color=(1,0,0,1), font_name='Inconsolata', font_size=20, halign='center', valign='center', background_color=(0,0,0,0)))
-        rate.add_widget(Button(text='Hard', color=(0,0,0,1), font_name='Inconsolata', font_size=20, halign='center', valign='center', background_color=(0,0,0,0)))
-        rate.add_widget(Button(text='Good', color=(0,1,0,1), font_name='Inconsolata', font_size=20, halign='center', valign='center', background_color=(0,0,0,0)))
-        rate.add_widget(Button(text='Easy', color=(0,0,1,1), font_name='Inconsolata', font_size=20, halign='center', valign='center', background_color=(0,0,0,0), on_press=self.showEndPlay))
+        rateAgain = Button(text='Again', color=(1,0,0,1), font_name='Inconsolata', font_size=20, halign='center', valign='center', background_color=(0,0,0,0), on_press=self.rateCard)
+        rateAgain.value = 0
+        rateHard = Button(text='Hard', color=(0,0,0,1), font_name='Inconsolata', font_size=20, halign='center', valign='center', background_color=(0,0,0,0), on_press=self.rateCard)
+        rateHard.value = 1
+        rateGood = Button(text='Good', color=(0,1,0,1), font_name='Inconsolata', font_size=20, halign='center', valign='center', background_color=(0,0,0,0), on_press=self.rateCard)
+        rateGood.value = 2
+        rateEasy = Button(text='Easy', color=(0,0,1,1), font_name='Inconsolata', font_size=20, halign='center', valign='center', background_color=(0,0,0,0), on_press=self.rateCard)
+        rateEasy.value = 3
+        rate.add_widget(rateAgain)
+        rate.add_widget(rateHard)
+        rate.add_widget(rateGood)
+        rate.add_widget(rateEasy)
+        rate.rateAgain = rateAgain
+        rate.rateHard = rateHard
+        rate.rateGood = rateGood
+        rate.rateEasy = rateEasy
         main.add_widget(rate)
         main.rate = rate
 
         self.add_widget(main)
         self.main = main
 
-        tab = Button(text='Next', font_name='Jersey10', font_size=25, size_hint=(1, .15), color=(1,1,1,1), on_press=self.next)
+        tab = Button(text='Next', font_name='Jersey10', font_size=25, size_hint=(1, .15), color=(.8,.8,.8,1), background_color=(0,0,0,0), on_press=self.next, disabled=True)
         with tab.canvas.before:
             Color(.07,.07,.07,.8)
             tab.bg=RoundedRectangle(size=tab.size, radius=(30,30,0,0))
@@ -102,20 +140,47 @@ class CardPlay(BoxLayout):
         self.add_widget(tab)
         self.tab = tab
 
-    def flipCard(instance, value):
-        # instance.showEndPlay()
-        if not instance.cardFlipped:
-            instance.main.layout.card.label.text = instance.card[0][0]
-            # instance.main.layout.card.image.source = 'res/textures/img2.png'
-            instance.main.rate.disabled = False
-            instance.main.rate.opacity = 1
-        else:
-            instance.main.layout.card.label.text = instance.card[1][0]
-            # instance.main.layout.card.image.source = 'res/textures/img1.png'
-            instance.main.rate.disabled = True
-            instance.main.rate.opacity = 0
+        self.nextQuestion(self)
 
-        instance.cardFlipped = not instance.cardFlipped
+    def rateCard(self, instance):
+        self.rate[instance.value] = self.rate[instance.value] + 1
+        self.score.arr[instance.value].text = f'{self.rate[instance.value]}'
+        jadwal_update(self.playCards[self.currentIdx], instance.value, tanggal_format(date.today()))
+
+        self.tab.disabled=False
+        self.tab.color=(1,1,1,1)
+
+        self.main.rate.disabled=True
+        self.main.rate.opacity=0
+        
+
+    def nextQuestion(self, instance):
+        # Kartu sudah di review semua?
+        if self.currentIdx == self.lastIdx:
+            # Selesai
+            self.showEndPlay(self)
+        else:
+            # Tampilkan kartu selanjutnya
+            self.currentIdx = self.currentIdx+1
+            self.main.layout.card.label.text = self.playCards[self.currentIdx][not self.cardFlipped][0]
+            self.tab.disabled=True
+            self.tab.color=(.8,.8,.8,.8)
+            
+        if self.cardFlipped:
+            self.flipCard(self)
+
+    def flipCard(self, instance):
+        # Balik kartu
+        if not self.cardFlipped:
+            self.main.layout.card.label.text = self.playCards[self.currentIdx][1][0]
+            self.main.rate.disabled = False
+            self.main.rate.opacity = 1
+        else:
+            self.main.layout.card.label.text = self.playCards[self.currentIdx][0][0]
+            self.main.rate.disabled = True
+            self.main.rate.opacity = 0
+
+        self.cardFlipped = not self.cardFlipped
 
     def showEndPlay(self, instance):
         card = self.main.layout.card
@@ -125,10 +190,16 @@ class CardPlay(BoxLayout):
         card.padding = (30, 200)
         card.add_widget(Label(text='Thats\'s all for today!', color=(0,0,0,1), font_name='Jersey10', font_size=25, halign='center', valign='center', size_hint=(1, .2)))
         # card.remove_widget(card.image)
-        card.image = None
+        self.tab.on_press=self.back
+
+        self.stashCard.append(self.playCards)
+        box_simpan(self.name, self.stashCard)
 
     def next(self, instance):
-        App.get_running_app().SwitchScreen(3, {})
+        self.nextQuestion(self)
+
+    def back(instance):
+        App.get_running_app().SwitchScreen(3, {'deckName': self.name})
 
     def updateCardSizePos(self, instance, value):
         instance.bg.size = instance.size

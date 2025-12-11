@@ -29,6 +29,7 @@ class CardList(BoxLayout):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
 
+        # Ambil data kartu
         self.name = App.get_running_app().data['deckName']
         self.data = box_ambil(self.name)
 
@@ -69,6 +70,7 @@ class CardList(BoxLayout):
         self.add_widget(tab)
         self.tab = tab
 
+        # Tampilkan kartu dalam bentuk widget
         for card in self.data['kartu']:
             self.addCard(self, card)
         self.main.add_widget(main.cardList)
