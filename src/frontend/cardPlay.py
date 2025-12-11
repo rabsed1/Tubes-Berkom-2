@@ -145,7 +145,8 @@ class CardPlay(BoxLayout):
     def rateCard(self, instance):
         self.rate[instance.value] = self.rate[instance.value] + 1
         self.score.arr[instance.value].text = f'{self.rate[instance.value]}'
-        jadwal_update(self.playCards[self.currentIdx], instance.value, tanggal_format(date.today()))
+        print(instance.value)
+        self.playCards[self.currentIdx] = jadwal_update(self.playCards[self.currentIdx], instance.value, tanggal_format(date.today()))
 
         self.tab.disabled=False
         self.tab.color=(1,1,1,1)
@@ -155,6 +156,8 @@ class CardPlay(BoxLayout):
         
 
     def nextQuestion(self, instance):
+        if self.cardFlipped:
+            self.flipCard(self)
         # Kartu sudah di review semua?
         if self.currentIdx == self.lastIdx:
             # Selesai
@@ -162,12 +165,10 @@ class CardPlay(BoxLayout):
         else:
             # Tampilkan kartu selanjutnya
             self.currentIdx = self.currentIdx+1
-            self.main.layout.card.label.text = self.playCards[self.currentIdx][not self.cardFlipped][0]
+            self.main.layout.card.label.text = self.playCards[self.currentIdx][self.cardFlipped][0]
             self.tab.disabled=True
             self.tab.color=(.8,.8,.8,.8)
             
-        if self.cardFlipped:
-            self.flipCard(self)
 
     def flipCard(self, instance):
         # Balik kartu
