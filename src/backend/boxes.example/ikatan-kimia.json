@@ -1,0 +1,307 @@
+{
+  "tanggal_pembuatan": "11/12/2025",
+  "label": "Ikatan kimia dan bentuk molekul",
+  "interval_factor": 1.0,
+  "kartu": [
+    [
+      [
+        "Apa yang dimaksud ikatan kimia"
+      ],
+      [
+        "Ikatan kimia adalah gaya tarik menarik yang mengikat atom atom sehingga membentuk zat yang lebih stabil"
+      ],
+      "11/12/2025",
+      "11/12/2025",
+      1.5,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      [
+        "Apa yang dimaksud ikatan ion"
+      ],
+      [
+        "Ikatan ion terbentuk karena perpindahan elektron dari atom logam ke atom nonlogam sehingga terbentuk kation dan anion yang saling tarik menarik"
+      ],
+      "11/12/2025",
+      "11/12/2025",
+      1.6,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      [
+        "Apa yang dimaksud ikatan kovalen"
+      ],
+      [
+        "Ikatan kovalen terbentuk ketika dua atom saling menggunakan bersama pasangan elektron"
+      ],
+      "11/12/2025",
+      "11/12/2025",
+      1.7,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      [
+        "Apa yang dimaksud ikatan kovalen koordinasi"
+      ],
+      [
+        "Ikatan kovalen koordinasi adalah ikatan kovalen yang pasangan elektronnya berasal dari satu atom saja"
+      ],
+      "11/12/2025",
+      "11/12/2025",
+      1.8,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      [
+        "Apa yang dimaksud keelektronegatifan"
+      ],
+      [
+        "Keelektronegatifan adalah ukuran kecenderungan atom dalam molekul untuk menarik pasangan elektron ikatan ke arahnya"
+      ],
+      "11/12/2025",
+      "11/12/2025",
+      1.9,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      [
+        "Apa yang dimaksud ikatan logam"
+      ],
+      [
+        "Ikatan logam terjadi karena gaya tarik antara kation logam dengan elektron valensi yang bergerak bebas dalam kisi logam"
+      ],
+      "11/12/2025",
+      "11/12/2025",
+      1.3,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      [
+        "Sebutkan tiga gaya antarmolekul utama"
+      ],
+      [
+        "Tiga gaya antarmolekul utama yaitu gaya dipol dipol gaya London dan ikatan hidrogen"
+      ],
+      "11/12/2025",
+      "11/12/2025",
+      1.4,
+      1,
+      3,
+      1,
+      1
+    ],
+    [
+      [
+        "Apa ide dasar teori VSEPR tentang bentuk molekul"
+      ],
+      [
+        "Teori VSEPR menyatakan bahwa pasangan elektron di sekitar atom pusat akan menata diri sejauh mungkin satu sama lain untuk meminimalkan tolak menolak sehingga menentukan bentuk molekul"
+      ],
+      "11/12/2025",
+      "11/12/2025",
+      1.5,
+      1,
+      0,
+      2,
+      1
+    ],
+    [
+      [
+        "Sebutkan bentuk molekul dengan dua pasangan elektron ikatan dan tidak ada pasangan elektron bebas pada atom pusat"
+      ],
+      [
+        "Bentuk molekul dengan dua pasangan elektron ikatan tanpa pasangan elektron bebas pada atom pusat adalah linear seperti molekul karbon dioksida"
+      ],
+      "11/12/2025",
+      "11/12/2025",
+      1.6,
+      1,
+      1,
+      1,
+      1
+    ],
+    [
+      [
+        "Mengapa molekul air berbentuk bengkok"
+      ],
+      [
+        "Molekul air memiliki dua pasangan elektron ikatan dan dua pasangan elektron bebas pada atom oksigen sehingga tolak menolak pasangan elektron bebas mengubah bentuk menjadi bengkok dengan sudut sekitar seratus empat derajat"
+      ],
+      "11/12/2025",
+      "11/12/2025",
+      1.7,
+      1,
+      2,
+      2,
+      1
+    ],
+    [
+      [
+        "Sebutkan contoh molekul berbentuk trigonal planar"
+      ],
+      [
+        "Molekul boron trifluorida merupakan contoh bentuk trigonal planar dengan tiga pasangan elektron ikatan dan tidak ada pasangan elektron bebas pada atom pusat"
+      ],
+      "11/12/2025",
+      "11/12/2025",
+      1.8,
+      1,
+      3,
+      1,
+      1
+    ],
+    [
+      [
+        "Sebutkan contoh molekul berbentuk tetrahedral"
+      ],
+      [
+        "Molekul metana adalah contoh bentuk tetrahedral dengan empat pasangan elektron ikatan mengelilingi atom karbon pusat"
+      ],
+      "11/12/2025",
+      "11/12/2025",
+      1.9,
+      1,
+      0,
+      2,
+      1
+    ],
+    [
+      [
+        "Sebutkan contoh molekul berbentuk trigonal piramida"
+      ],
+      [
+        "Molekul amonia adalah contoh bentuk trigonal piramida karena atom nitrogen memiliki tiga pasangan elektron ikatan dan satu pasangan elektron bebas"
+      ],
+      "11/12/2025",
+      "11/12/2025",
+      1.3,
+      2,
+      1,
+      3,
+      1
+    ],
+    [
+      [
+        "Sebutkan contoh molekul berbentuk oktahedral"
+      ],
+      [
+        "Molekul heksafluorida sulfur adalah contoh bentuk oktahedral dengan enam pasangan elektron ikatan di sekitar atom pusat"
+      ],
+      "11/12/2025",
+      "11/12/2025",
+      1.4,
+      2,
+      2,
+      4,
+      1
+    ],
+    [
+      [
+        "Bagaimana pengaruh pasangan elektron bebas terhadap sudut ikatan"
+      ],
+      [
+        "Pasangan elektron bebas menolak pasangan elektron ikatan lebih kuat sehingga sudut ikatan cenderung lebih kecil dibandingkan jika hanya ada pasangan elektron ikatan"
+      ],
+      "11/12/2025",
+      "11/12/2025",
+      1.5,
+      2,
+      3,
+      5,
+      1
+    ],
+    [
+      [
+        "Apa yang dimaksud struktur resonansi"
+      ],
+      [
+        "Struktur resonansi adalah beberapa struktur Lewis yang mungkin ditulis untuk satu molekul dan struktur sebenarnya merupakan gabungan dari semua kemungkinan tersebut"
+      ],
+      "11/12/2025",
+      "11/12/2025",
+      1.6,
+      2,
+      0,
+      3,
+      1
+    ],
+    [
+      [
+        "Bandingkan ikatan tunggal ikatan rangkap dua dan ikatan rangkap tiga dalam hal panjang dan kekuatan"
+      ],
+      [
+        "Ikatan tunggal memiliki panjang paling besar dan kekuatan paling kecil sedangkan ikatan rangkap tiga memiliki panjang paling pendek dan kekuatan paling besar"
+      ],
+      "11/12/2025",
+      "11/12/2025",
+      1.7,
+      2,
+      1,
+      4,
+      1
+    ],
+    [
+      [
+        "Apa yang dimaksud momen dipol"
+      ],
+      [
+        "Momen dipol adalah ukuran ketidakseimbangan distribusi muatan dalam molekul dan dinyatakan sebagai hasil kali besar muatan dengan jarak pisahnya"
+      ],
+      "11/12/2025",
+      "11/12/2025",
+      1.8,
+      3,
+      2,
+      7,
+      1
+    ],
+    [
+      [
+        "Kapan suatu molekul bersifat polar"
+      ],
+      [
+        "Molekul bersifat polar jika memiliki momen dipol hasil dari ikatan ikatan polar yang tidak saling meniadakan karena bentuk molekul asimetris"
+      ],
+      "11/12/2025",
+      "11/12/2025",
+      1.9,
+      3,
+      3,
+      8,
+      1
+    ],
+    [
+      [
+        "Mengapa molekul dengan ikatan hidrogen kuat cenderung memiliki titik didih lebih tinggi"
+      ],
+      [
+        "Ikatan hidrogen merupakan gaya antarmolekul yang cukup kuat sehingga memerlukan energi lebih besar untuk memutuskan gaya tarik antar molekul maka titik didih menjadi lebih tinggi"
+      ],
+      "11/12/2025",
+      "11/12/2025",
+      1.3,
+      3,
+      0,
+      9,
+      1
+    ]
+  ]
+}
