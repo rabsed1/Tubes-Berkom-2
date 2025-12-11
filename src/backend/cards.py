@@ -13,9 +13,10 @@ def kartu_buat(depan, belakang, tanggal_str):
         belakang, 
         tanggal_str, 
         tanggal_str, # tanggal next dan last disamakan
-        config.DEFAULT_EF,
-        config.DEFAULT_NR,
-        config.DEFAULT_Q_LAST,
+        config.SM_DEFAULT_EF,
+        config.SM_DEFAULT_NR,
+        config.SM_DEFAULT_Q_LAST,
+        0,
         0
     ]
 
@@ -35,13 +36,14 @@ def kartu_valid(kartu):
     EF = kartu[config.IDX_EF]
     NR = kartu[config.IDX_NR]
     Q = kartu[config.IDX_Q_LAST]
-    R = kartu[config.R]
-
-    if type(depan) != str or type(belakang) != str:
+    I = kartu[config.IDX_I_LAST]
+    R = kartu[config.IDX_R]
+    
+    if type(depan) != list or type(belakang) != list:
         return False
     if type(tanggal_next) != str or type(tanggal_last) != str:
         return False
-    if type(EF) != int or type(NR) != int or type(Q) != int or type(R) != int:
+    if type(EF) != float or type(I) != int or type(NR) != int or type(Q) != int or type(R) != int:
         return False
     
     # klo bisa pass itu semua, selamat, elu validd

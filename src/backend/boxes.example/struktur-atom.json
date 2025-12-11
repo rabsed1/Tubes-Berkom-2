@@ -1,0 +1,307 @@
+{
+  "tanggal_pembuatan": "11/12/2025",
+  "label": "Struktur atom dan konfigurasi elektron",
+  "interval_factor": 0.8,
+  "kartu": [
+    [
+      [
+        "Apa yang dimaksud nomor atom"
+      ],
+      [
+        "Nomor atom adalah jumlah proton dalam inti atom dan menentukan identitas unsur"
+      ],
+      "11/12/2025",
+      "11/12/2025",
+      1.3,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      [
+        "Apa yang dimaksud nomor massa"
+      ],
+      [
+        "Nomor massa adalah jumlah proton dan neutron dalam inti atom"
+      ],
+      "11/12/2025",
+      "11/12/2025",
+      1.4,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      [
+        "Sebutkan tiga partikel penyusun atom"
+      ],
+      [
+        "Tiga partikel penyusun atom yaitu proton bermuatan positif neutron bermuatan netral dan elektron bermuatan negatif"
+      ],
+      "11/12/2025",
+      "11/12/2025",
+      1.5,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      [
+        "Tuliskan contoh notasi atom untuk unsur X dengan nomor atom dua belas dan nomor massa dua empat"
+      ],
+      [
+        "Notasi atom dapat ditulis sebagai superskrip dua empat dan subskrip dua belas di depan lambang X"
+      ],
+      "11/12/2025",
+      "11/12/2025",
+      1.6,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      [
+        "Apa yang dimaksud isotop"
+      ],
+      [
+        "Isotop adalah atom atom dari unsur yang sama dengan nomor atom sama tetapi nomor massa berbeda karena jumlah neutron berbeda"
+      ],
+      "11/12/2025",
+      "11/12/2025",
+      1.7,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      [
+        "Apa yang dimaksud pasangan atom isoelektron"
+      ],
+      [
+        "Pasangan atom atau ion isoelektron memiliki jumlah elektron sama walaupun nomor atom berbeda"
+      ],
+      "11/12/2025",
+      "11/12/2025",
+      1.8,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      [
+        "Jelaskan aturan pengisian elektron menurut asas Aufbau"
+      ],
+      [
+        "Asas Aufbau menyatakan elektron menempati tingkat energi yang lebih rendah terlebih dahulu sebelum mengisi tingkat energi yang lebih tinggi"
+      ],
+      "11/12/2025",
+      "11/12/2025",
+      1.9,
+      1,
+      2,
+      1,
+      1
+    ],
+    [
+      [
+        "Jelaskan prinsip larangan Pauli"
+      ],
+      [
+        "Prinsip larangan Pauli menyatakan bahwa tidak ada dua elektron dalam satu atom yang memiliki empat bilangan kuantum sama"
+      ],
+      "11/12/2025",
+      "11/12/2025",
+      1.3,
+      1,
+      3,
+      2,
+      1
+    ],
+    [
+      [
+        "Jelaskan kaidah Hund"
+      ],
+      [
+        "Kaidah Hund menyatakan bahwa elektron akan mengisi orbital orbital dalam satu subkulit secara tunggal terlebih dahulu dengan spin sejajar sebelum berpasangan"
+      ],
+      "11/12/2025",
+      "11/12/2025",
+      1.4,
+      1,
+      0,
+      1,
+      1
+    ],
+    [
+      [
+        "Tuliskan konfigurasi elektron natrium dalam keadaan dasar"
+      ],
+      [
+        "Konfigurasi elektron natrium adalah satu s dua dua s dua dua p enam tiga s satu"
+      ],
+      "11/12/2025",
+      "11/12/2025",
+      1.5,
+      1,
+      1,
+      2,
+      1
+    ],
+    [
+      [
+        "Tuliskan konfigurasi elektron klorin dalam keadaan dasar"
+      ],
+      [
+        "Konfigurasi elektron klorin adalah satu s dua dua s dua dua p enam tiga s dua tiga p lima"
+      ],
+      "11/12/2025",
+      "11/12/2025",
+      1.6,
+      1,
+      2,
+      1,
+      1
+    ],
+    [
+      [
+        "Tuliskan konfigurasi elektron magnesium dalam keadaan dasar"
+      ],
+      [
+        "Konfigurasi elektron magnesium adalah satu s dua dua s dua dua p enam tiga s dua"
+      ],
+      "11/12/2025",
+      "11/12/2025",
+      1.7,
+      1,
+      3,
+      2,
+      1
+    ],
+    [
+      [
+        "Bagaimana bentuk umum orbital s dan orbital p"
+      ],
+      [
+        "Orbital s berbentuk seperti bola sedangkan setiap orbital p berbentuk seperti dua lobus yang berlawanan arah"
+      ],
+      "11/12/2025",
+      "11/12/2025",
+      1.8,
+      2,
+      0,
+      3,
+      1
+    ],
+    [
+      [
+        "Apa yang dimaksud bilangan kuantum utama n"
+      ],
+      [
+        "Bilangan kuantum utama n menunjukkan kulit atau tingkat energi utama elektron dalam atom"
+      ],
+      "11/12/2025",
+      "11/12/2025",
+      1.9,
+      2,
+      1,
+      4,
+      1
+    ],
+    [
+      [
+        "Berapa jumlah maksimum elektron dalam suatu kulit dengan bilangan kuantum utama n"
+      ],
+      [
+        "Jumlah maksimum elektron dalam suatu kulit adalah dua dikali n kuadrat"
+      ],
+      "11/12/2025",
+      "11/12/2025",
+      1.3,
+      2,
+      2,
+      5,
+      1
+    ],
+    [
+      [
+        "Apa yang dimaksud subkulit dalam atom"
+      ],
+      [
+        "Subkulit adalah bagian dari kulit yang dibedakan berdasarkan bentuk orbital yaitu s p d dan f"
+      ],
+      "11/12/2025",
+      "11/12/2025",
+      1.4,
+      2,
+      3,
+      3,
+      1
+    ],
+    [
+      [
+        "Apa yang dimaksud kulit valensi"
+      ],
+      [
+        "Kulit valensi adalah kulit terluar yang masih ditempati elektron dan berperan penting dalam reaksi kimia"
+      ],
+      "11/12/2025",
+      "11/12/2025",
+      1.5,
+      2,
+      0,
+      4,
+      1
+    ],
+    [
+      [
+        "Apa yang dimaksud elektron valensi"
+      ],
+      [
+        "Elektron valensi adalah elektron pada kulit terluar yang terlibat langsung dalam pembentukan ikatan kimia"
+      ],
+      "11/12/2025",
+      "11/12/2025",
+      1.6,
+      3,
+      1,
+      7,
+      1
+    ],
+    [
+      [
+        "Apa yang dimaksud diagram orbital"
+      ],
+      [
+        "Diagram orbital adalah cara menggambarkan penyebaran elektron dalam orbital orbital dengan kotak atau garis yang diisi panah panah sebagai lambang spin elektron"
+      ],
+      "11/12/2025",
+      "11/12/2025",
+      1.7,
+      3,
+      2,
+      8,
+      1
+    ],
+    [
+      [
+        "Apa perbedaan keadaan dasar dan keadaan tereksitasi elektron"
+      ],
+      [
+        "Keadaan dasar adalah keadaan ketika elektron menempati tingkat energi serendah mungkin sedangkan keadaan tereksitasi terjadi ketika elektron menyerap energi dan berpindah ke tingkat energi yang lebih tinggi"
+      ],
+      "11/12/2025",
+      "11/12/2025",
+      1.8,
+      3,
+      3,
+      9,
+      1
+    ]
+  ]
+}

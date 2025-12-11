@@ -1,0 +1,307 @@
+{
+  "tanggal_pembuatan": "11/12/2025",
+  "label": "Stoikiometri dasar",
+  "interval_factor": 1.2,
+  "kartu": [
+    [
+      [
+        "Apa yang dimaksud satu mol zat"
+      ],
+      [
+        "Satu mol zat adalah jumlah zat yang mengandung sejumlah partikel yang sama dengan jumlah atom dalam dua belas gram karbon dua belas"
+      ],
+      "11/12/2025",
+      "11/12/2025",
+      1.7,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      [
+        "Berapa nilai bilangan Avogadro"
+      ],
+      [
+        "Bilangan Avogadro menyatakan jumlah partikel dalam satu mol yaitu sekitar enam koma nol dua dua dikali sepuluh pangkat dua puluh tiga partikel"
+      ],
+      "11/12/2025",
+      "11/12/2025",
+      1.8,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      [
+        "Apa yang dimaksud massa molar"
+      ],
+      [
+        "Massa molar adalah massa satu mol zat dan besarnya sama dengan massa atom relatif atau massa molekul relatif dalam satuan gram per mol"
+      ],
+      "11/12/2025",
+      "11/12/2025",
+      1.9,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      [
+        "Jelaskan hubungan antara mol massa dan massa molar"
+      ],
+      [
+        "Jumlah mol sama dengan massa zat dibagi massa molar sedangkan massa zat sama dengan jumlah mol dikali massa molar"
+      ],
+      "11/12/2025",
+      "11/12/2025",
+      1.3,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      [
+        "Berapa volume satu mol gas ideal pada keadaan standar suhu dan tekanan"
+      ],
+      [
+        "Pada keadaan standar suhu dan tekanan satu mol gas ideal menempati volume sekitar dua puluh dua koma empat liter"
+      ],
+      "11/12/2025",
+      "11/12/2025",
+      1.4,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      [
+        "Mengapa persamaan reaksi kimia perlu disetarakan"
+      ],
+      [
+        "Persamaan reaksi kimia perlu disetarakan agar hukum kekekalan massa terpenuhi yaitu jumlah atom setiap unsur sama sebelum dan sesudah reaksi"
+      ],
+      "11/12/2025",
+      "11/12/2025",
+      1.5,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      [
+        "Apa arti koefisien dalam persamaan reaksi yang sudah setara"
+      ],
+      [
+        "Koefisien dalam persamaan reaksi yang sudah setara menyatakan perbandingan jumlah mol zat zat yang bereaksi dan yang dihasilkan"
+      ],
+      "11/12/2025",
+      "11/12/2025",
+      1.6,
+      1,
+      0,
+      1,
+      1
+    ],
+    [
+      [
+        "Apa yang dimaksud pereaksi pembatas"
+      ],
+      [
+        "Pereaksi pembatas adalah pereaksi yang habis terlebih dahulu sehingga membatasi jumlah maksimum produk yang dapat terbentuk"
+      ],
+      "11/12/2025",
+      "11/12/2025",
+      1.7,
+      1,
+      1,
+      2,
+      1
+    ],
+    [
+      [
+        "Sebutkan langkah umum menyelesaikan soal stoikiometri massa ke massa"
+      ],
+      [
+        "Langkah umumnya yaitu ubah massa pereaksi menjadi mol gunakan perbandingan koefisien untuk mencari mol zat lain kemudian ubah kembali mol tersebut menjadi massa"
+      ],
+      "11/12/2025",
+      "11/12/2025",
+      1.8,
+      1,
+      2,
+      1,
+      1
+    ],
+    [
+      [
+        "Apa yang dimaksud persen massa unsur dalam senyawa"
+      ],
+      [
+        "Persen massa unsur dalam senyawa adalah perbandingan massa unsur tersebut terhadap massa total senyawa dikali seratus persen"
+      ],
+      "11/12/2025",
+      "11/12/2025",
+      1.9,
+      1,
+      3,
+      2,
+      1
+    ],
+    [
+      [
+        "Apa yang dimaksud persen hasil reaksi"
+      ],
+      [
+        "Persen hasil adalah perbandingan hasil nyata yang diperoleh di laboratorium dengan hasil teoritis dikali seratus persen"
+      ],
+      "11/12/2025",
+      "11/12/2025",
+      1.3,
+      1,
+      0,
+      1,
+      1
+    ],
+    [
+      [
+        "Bagaimana hubungan jumlah mol dengan jumlah partikel"
+      ],
+      [
+        "Jumlah partikel sama dengan jumlah mol dikali bilangan Avogadro"
+      ],
+      "11/12/2025",
+      "11/12/2025",
+      1.4,
+      1,
+      1,
+      2,
+      1
+    ],
+    [
+      [
+        "Apa yang dimaksud molaritas larutan"
+      ],
+      [
+        "Molaritas adalah konsentrasi larutan yang menyatakan jumlah mol zat terlarut dalam satu liter larutan"
+      ],
+      "11/12/2025",
+      "11/12/2025",
+      1.5,
+      2,
+      2,
+      3,
+      1
+    ],
+    [
+      [
+        "Bagaimana cara menghitung mol zat terlarut dari molaritas dan volume larutan"
+      ],
+      [
+        "Jumlah mol zat terlarut sama dengan molaritas dikali volume larutan dalam liter"
+      ],
+      "11/12/2025",
+      "11/12/2025",
+      1.6,
+      2,
+      3,
+      4,
+      1
+    ],
+    [
+      [
+        "Bagaimana prinsip perhitungan pengenceran larutan"
+      ],
+      [
+        "Pada pengenceran larutan jumlah mol zat terlarut tetap sehingga hasil kali konsentrasi dan volume sebelum pengenceran sama dengan hasil kali konsentrasi dan volume sesudah pengenceran"
+      ],
+      "11/12/2025",
+      "11/12/2025",
+      1.7,
+      2,
+      0,
+      5,
+      1
+    ],
+    [
+      [
+        "Apa yang dimaksud stoikiometri reaksi asam basa sederhana"
+      ],
+      [
+        "Stoikiometri reaksi asam basa sederhana menggunakan perbandingan mol asam dan mol basa yang bereaksi sesuai koefisien pada persamaan reaksi setara"
+      ],
+      "11/12/2025",
+      "11/12/2025",
+      1.8,
+      2,
+      1,
+      3,
+      1
+    ],
+    [
+      [
+        "Bagaimana cara menggunakan persamaan reaksi untuk menghitung volume gas yang dihasilkan"
+      ],
+      [
+        "Pertama cari mol zat yang bereaksi berdasarkan massa atau volume kemudian gunakan perbandingan koefisien untuk mendapatkan mol gas lalu ubah mol gas menjadi volume"
+      ],
+      "11/12/2025",
+      "11/12/2025",
+      1.9,
+      2,
+      2,
+      4,
+      1
+    ],
+    [
+      [
+        "Apa yang dimaksud pereaksi berlebih"
+      ],
+      [
+        "Pereaksi berlebih adalah pereaksi yang jumlahnya lebih banyak daripada yang diperlukan menurut perbandingan stoikiometri sehingga masih tersisa setelah reaksi selesai"
+      ],
+      "11/12/2025",
+      "11/12/2025",
+      1.3,
+      3,
+      3,
+      7,
+      1
+    ],
+    [
+      [
+        "Mengapa penting memahami stoikiometri dalam praktik kimia"
+      ],
+      [
+        "Pemahaman stoikiometri penting untuk merancang jumlah pereaksi yang tepat memperkirakan hasil reaksi menghemat bahan dan mengurangi limbah kimia"
+      ],
+      "11/12/2025",
+      "11/12/2025",
+      1.4,
+      3,
+      0,
+      8,
+      1
+    ],
+    [
+      [
+        "Apa yang dimaksud hubungan volume gas dalam persamaan reaksi pada suhu dan tekanan yang sama"
+      ],
+      [
+        "Pada suhu dan tekanan yang sama volume gas gas yang terlibat dalam reaksi berbanding lurus dengan koefisien dalam persamaan reaksi setara"
+      ],
+      "11/12/2025",
+      "11/12/2025",
+      1.5,
+      3,
+      1,
+      9,
+      1
+    ]
+  ]
+}
