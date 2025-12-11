@@ -219,4 +219,5 @@ class CardList(BoxLayout):
         cards = []
         for card in self.main.cardList.arr:
             cards.append(kartu_buat([card.card.arr[0].input.text],[card.card.arr[1].input.text],tanggal_format(date.today())))
-        box_simpan(self.name, cards)
+        self.data['kartu'] = cards
+        box_simpan(self.name, self.data)

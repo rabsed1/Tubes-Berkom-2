@@ -14,11 +14,18 @@ from kivy.graphics import Ellipse
 
 from frontend.globals import Globals
 
+from backend.boxes import box_ambil
+from backend.boxes import box_ambil_stat
+
 class Statistics(RelativeLayout):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
 
         self.size = Globals.windowSize
+
+        self.name = App.get_running_app().data['deckName']
+        self.data = box_ambil(self.name)
+        self.stat = box_ambil_stat(self.name)
 
         with self.canvas:
             Rectangle(source='res/textures/bg1.png', size=self.size)
@@ -40,7 +47,7 @@ class Statistics(RelativeLayout):
             mastery.bind(pos=self.updateSizePos)
         
         mastery.title = Label(text='Mastery Rate', color=(0,0,0,1), font_name='Jersey10', font_size=30, size_hint=(1,.2))
-        mastery.visual = Label(text='50%', color=(0,0,0,1), font_size=25)
+        mastery.visual = Label(text=f'{self.stat['mastery_rate']}%', color=(0,0,0,1), font_size=25)
         with mastery.visual.canvas.before:
             Color(.921,.921,.921,1)
             mastery.visual.ellipse1 = Ellipse(pos=mastery.visual.pos, size=mastery.visual.size)
@@ -69,7 +76,7 @@ class Statistics(RelativeLayout):
             due.bind(size=self.updateSizePos)
             due.bind(pos=self.updateSizePos)
         due.title = Label(text='Cards Due\nToday', color=(0,0,0,1), font_name='Jersey10', font_size=30, size_hint=(1,.38), line_height=.8, halign='center')
-        due.number = Label(text='26', color=(0,0,0,1), font_name='Jersey10', font_size=100, size_hint=(1,.43))
+        due.number = Label(text=f'{self.stat['jumlah_kartu_belum_direview']}', color=(0,0,0,1), font_name='Jersey10', font_size=100, size_hint=(1,.43))
         due.subTitle = Label(text='Estimated Time', color=(0,0,0,1), font_name='Jersey10', font_size=20, size_hint=(1,.1))
         due.minute = Label(text='6 Min', color=(0,0,0,1), font_name='Jersey10', font_size=20, size_hint=(1,.1))
         due.add_widget(due.title)
@@ -102,10 +109,10 @@ class Statistics(RelativeLayout):
         secondContainer.firstContainer = difficultyTitles
         
         difficultyCounts = BoxLayout(orientation='horizontal', size_hint=(1,.3))
-        difficultyCounts.add_widget(Label(text='1', color=(1,0,0,1), font_name='Jersey10', font_size=25))
-        difficultyCounts.add_widget(Label(text='0', color=(0,0,0,1), font_name='Jersey10', font_size=25))
-        difficultyCounts.add_widget(Label(text='1', color=(0,1,0,1), font_name='Jersey10', font_size=25))
-        difficultyCounts.add_widget(Label(text='1', color=(0,0,1,1), font_name='Jersey10', font_size=25))
+        difficultyCounts.add_widget(Label(text=f'{self.stat['jumlah_kartu_by_q'][0]}', color=(1,0,0,1), font_name='Jersey10', font_size=25))
+        difficultyCounts.add_widget(Label(text=f'{self.stat['jumlah_kartu_by_q'][1]}', color=(0,0,0,1), font_name='Jersey10', font_size=25))
+        difficultyCounts.add_widget(Label(text=f'{self.stat['jumlah_kartu_by_q'][2]}', color=(0,1,0,1), font_name='Jersey10', font_size=25))
+        difficultyCounts.add_widget(Label(text=f'{self.stat['jumlah_kartu_by_q'][3]}', color=(0,0,1,1), font_name='Jersey10', font_size=25))
         secondContainer.add_widget(difficultyCounts)
         secondContainer.firstContainer = difficultyCounts
 

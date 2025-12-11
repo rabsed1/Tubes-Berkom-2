@@ -32,11 +32,11 @@ class CardPlay(BoxLayout):
         self.size = Globals.windowSize
 
         self.name = App.get_running_app().data['deckName']
-        self.cards = box_ambil(self.name)['kartu']
+        self.data = box_ambil(self.name)
 
         self.playCards = []
         self.stashCard = []
-        for card in self.cards:
+        for card in self.data['kartu']:
             if tanggal_parse(card[3]) == date.today():
                 self.playCards.append(card)
             else:
@@ -193,12 +193,13 @@ class CardPlay(BoxLayout):
         self.tab.on_press=self.back
 
         self.stashCard.append(self.playCards)
-        box_simpan(self.name, self.stashCard)
+        self.data['kartu'] = self.stashCard
+        box_simpan(self.name, self.data)
 
     def next(self, instance):
         self.nextQuestion(self)
 
-    def back(instance):
+    def back(self):
         App.get_running_app().SwitchScreen(3, {'deckName': self.name})
 
     def updateCardSizePos(self, instance, value):
