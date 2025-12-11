@@ -1,4 +1,4 @@
-from globals import Globals
+from kivy.app import App
 
 from kivy.uix.relativelayout import RelativeLayout
 from kivy.uix.boxlayout import BoxLayout
@@ -11,6 +11,8 @@ from kivy.graphics import RoundedRectangle
 from kivy.graphics import Line
 from kivy.graphics import Color
 from kivy.graphics import Ellipse
+
+from frontend.globals import Globals
 
 class Statistics(RelativeLayout):
     def __init__(self, **kwargs):
@@ -167,7 +169,7 @@ class Statistics(RelativeLayout):
         self.add_widget(layout)
         self.layout = layout
 
-        tab = Button(text='Back', font_name='Jersey10', font_size=25, size_hint=(1,.1), background_color=(0,0,0,0))
+        tab = Button(text='Back', font_name='Jersey10', font_size=25, size_hint=(1,.1), background_color=(0,0,0,0), on_press=self.back)
         with tab.canvas.before:
             Color(.07,.07,.07,.8)
             tab.bg=RoundedRectangle(size=tab.size, radius=(30,30,0,0))
@@ -176,6 +178,9 @@ class Statistics(RelativeLayout):
 
         self.add_widget(tab)
         self.tab = tab
+
+    def back(self, instance):
+        App.get_running_app().SwitchScreen(0, {})
 
     def updateSizePos(self, instance, value):
         instance.bg.size = instance.size

@@ -1,4 +1,4 @@
-import config
+from backend import config
 
 def kartu_buat(depan, belakang, tanggal_str):
     # membuat kartu tapi pake pemeriksaan data
@@ -13,9 +13,9 @@ def kartu_buat(depan, belakang, tanggal_str):
         belakang, 
         tanggal_str, 
         tanggal_str, # tanggal next dan last disamakan
-        config.DEFAULT_EF,
-        config.DEFAULT_NR,
-        config.DEFAULT_Q_LAST,
+        config.SM_DEFAULT_EF,
+        config.SM_DEFAULT_NR,
+        config.SM_DEFAULT_Q_LAST,
         0
     ]
 

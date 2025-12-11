@@ -1,5 +1,5 @@
 from backend.date import tanggal_tambah
-import config
+from backend import config
 
 def clamp(angka, maks):
     # FUNGSI CLAMP() KAGAK BOLEH!!!! sedih bet

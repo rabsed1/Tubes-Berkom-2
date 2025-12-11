@@ -5,8 +5,10 @@ from kivy.graphics import BoxShadow
 from kivy.graphics import RoundedRectangle
 
 class Deck(Button):
-    def __init__(self, **kwargs):
+    def __init__(self, title, **kwargs):
         super().__init__(**kwargs)
+
+        self.title = title
 
         self.size_hint=(1,None)
         self.size=(0, 200)
@@ -19,8 +21,12 @@ class Deck(Button):
             self.bg = RoundedRectangle(size=self.size, pos=self.pos, radius=(45,45,45,45))
             self.bind(size=self.updateSelfSizePos)
             self.bind(pos=self.updateSelfSizePos)
-        self.label = Label(text='Kenapa kita hidup coba', color=(1,1,1,1), font_name='Jersey10', font_size=34, valign='center', halign='center', size_hint=(.8,.8), pos_hint={'center_x': .5})
+        self.label = Label(text=title, color=(1,1,1,1), font_name='Jersey10', font_size=34, valign='center', halign='center', size_hint=(.8,.8), pos_hint={'center_x': .5})
         self.add_widget(self.label)
+
+    def updateTitle(self, instance, title):
+        self.title = title
+        self.label.text = self.title
     
     def updateSelfSizePos(self, instance, value):
         instance.bg.size = instance.size
