@@ -1,4 +1,4 @@
-import config
+from backend import config
 
 def kartu_buat(depan, belakang, tanggal_str):
     # membuat kartu tapi pake pemeriksaan data

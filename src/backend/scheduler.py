@@ -1,5 +1,5 @@
-from date import tanggal_tambah
-import config
+from backend.date import tanggal_tambah
+from backend import config
 
 def max_imp(a, b):
     # fungsi max() keknya juga nggak boleh bawaan

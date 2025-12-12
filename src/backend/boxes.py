@@ -1,7 +1,7 @@
 import os
 import json
-import config
-from cards import kartu_valid
+from backend import config
+from backend.cards import kartu_valid
 
 # path-nya absolute, tapi relatif terhadap path berkas boxes.py
 path = os.path.abspath(__file__)
@@ -184,3 +184,12 @@ def boxes_daftar():
         daftar_box_path[i] = box_path(daftar_box_nama[i][:-5])
     
     return daftar_box_path
+
+def boxes_daftar_nama():
+    daftar_box = os.listdir(BOXES_PATH)
+    jumlah_box = len(daftar_box)
+
+    daftar_box_nama = ["" for i in range(jumlah_box)]
+    for i in range(jumlah_box):
+        daftar_box_nama[i] = daftar_box[i][:-5]
+    return daftar_box_nama
